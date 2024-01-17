@@ -1,107 +1,139 @@
-import React, {FC, useState} from 'react';
-import {Box, Typography} from "@mui/material";
-import Grid from '@mui/material/Grid';
-import SearchBar from '@mkyy/mui-search-bar';
-import SelectFilters from "../SelectFilters/SelectFilters";
-import {
-    changeSortingBy,
-    changeCategories,
-    fetchGetBooks,
-    changeSearchValueBooks,
-    clearStore, stateDefaultValue
-} from "../../store/booksSlice";
-import {useDispatch, useSelector} from "react-redux";
+import React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-
-const Header:FC = () => {
-    const categories = useAppSelector((state) => state.books.categories)
-    const sortingBy = useAppSelector((state) => state.books.sortingBy)
-    const dispatch = useAppDispatch()
-    const [textFieldValue,setTextFieldValue] = useState('')
-    function handleSearch(){
-        dispatch(fetchGetBooks())
-    }
-    function handleChangeSortingBy(sortingByValue:string){
-        dispatch(changeSortingBy(sortingByValue))
-    }
-    function handleChangeCategories(sortingByValue:string){
-        dispatch(changeCategories(sortingByValue))
-    }
-    function handleChangeSearchValueBooks(){
-        dispatch(changeSearchValueBooks(textFieldValue))
-    }
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+import { ReactComponent as Logo } from "../../svg/logo (2).svg";
 
 
+const pages = ['Books', 'Authors', 'What to Read?','Gift Ideas','About Us'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const Header = () => {
+    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
+    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
     return (
-        <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            sx={{
-                width:'100vw',
-                height:'30vh',
-                // backgroundImage: `url(${booksImages})`,
-            }}
-        >
-            <Typography  variant='h6'>Search for books</Typography>
-            <Box sx={{display:'inline-flex'}}>
-                <SearchBar
-                    style={
-                        {
-                            width:'20vw',
-                        }
-                    }
-                    onChange={newValue => setTextFieldValue(newValue)}
-                    onSearch={()=>{
-                        handleChangeSearchValueBooks()
-                        handleSearch()
-                        dispatch(clearStore(stateDefaultValue))
+        <Box sx={{ flexGrow: 1,padding:'20px' }}>
+            <AppBar
+                sx={{
+                    backgroundColor:'#2A2C2E',
+                    borderRadius:'20px',
+                }}
+                position="static">
+                <Toolbar>
+                    <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1,flexGrow: 0.6 }}>
+                        <Logo/>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="a"
+                            href="#app-bar-with-responsive-menu"
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.1rem',
+                                color: 'inherit',
+                                textDecoration: 'none',
+                                pt:0.5
+                                // lineHeight:'0px'
+                            }}
+                        >
+                            BIG BOOKSHELF
+                        </Typography>
+                    </Box>
+                    {/*<Search>*/}
+                    {/*    <SearchIconWrapper>*/}
+                    {/*        <SearchIcon />*/}
+                    {/*    </SearchIconWrapper>*/}
+                    {/*    <StyledInputBase*/}
+                    {/*        placeholder="Search…"*/}
+                    {/*        inputProps={{ 'aria-label': 'search' }}*/}
+                    {/*    />*/}
+                    {/*</Search>*/}
+                    {/*<Box sx={{ flexGrow: 1 }} />*/}
+                    <Box sx={{ display: {  md: 'flex' },flexGrow: 1 }}>
+                        {pages.map((page) => (
+                            <Button
+                                key={page}
+                                onClick={handleCloseNavMenu}
+                                sx={{
+                                    my: 2,
+                                    display: 'block',
+                                }}
+                            >
 
-                    }}
-
-                />
-                <Button variant="contained" disableElevation onClick={()=>{
-                    handleChangeSearchValueBooks()
-                    handleSearch()
-                    dispatch(clearStore(stateDefaultValue))
-                }}>
-                    Search
-                </Button>
-            </Box>
-            <Box sx={{display:'inline-flex',width:'20wh'}}
-            >
-                <Grid
-
-                    direction="row"
-                     justifyContent="center"
-                     alignItems="center">
-                    <Typography variant='h6'>Сategories</Typography>
-                    <SelectFilters
-                        nameFilters={['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry']}
-                        dispatchFilters={handleChangeCategories}
-                        selectValue={categories}
-                    />
-                </Grid>
-                <Grid
-
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    >
-                    <Typography variant='h6'>Sorting By</Typography>
-                    <SelectFilters
-                        nameFilters={['relevance','newest']}
-                        dispatchFilters={handleChangeSortingBy}
-                        selectValue={sortingBy}
-                    />
-                </Grid>
-
-
-            </Box>
-        </Grid>
+                                <Typography sx={{
+                                    color:' var(--White-Medium-emphasis, rgba(255, 255, 255, 0.60))',
+                                    textAlign: 'center',
+                                    fontFamily: 'Clash Grotesk Variable',
+                                    fontSize: '16px',
+                                    fontStyle: 'normal',
+                                    fontWeight: '400',
+                                    lineHeight: '24px',
+                                    letterSpacing: '0.024px',
+                                }}>
+                                    {page}
+                                </Typography>
+                            </Button>
+                        ))}
+                    </Box>
+                    <Box sx={{ display: { xs: 'flex'  } }}>
+                        <Tooltip title="Open settings">
+                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                <Avatar alt="Remy Sharp" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrDAY_lyALmc62tPopzRzF9hNBFzbyqxzYB6nXC2IZ5w&s" />
+                            </IconButton>
+                        </Tooltip>
+                        <Menu
+                            sx={{ mt: '45px' }}
+                            id="menu-appbar"
+                            anchorEl={anchorElUser}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={Boolean(anchorElUser)}
+                            onClose={handleCloseUserMenu}
+                        >
+                            {settings.map((setting) => (
+                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                    <Typography textAlign="center">{setting}</Typography>
+                                </MenuItem>
+                            ))}
+                        </Menu>
+                    </Box>
+                </Toolbar>
+            </AppBar>
+        </Box>
     );
 };
 

@@ -5,48 +5,45 @@ import Grid from "@mui/material/Grid";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "@mui/material/Button";
 import { changePagesBooks, fetchGetBooks} from "../../store/booksSlice";
-import {BookType} from "../../types/types";
+import {BookType, IFilm} from "../../types/types";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
+import {changePage, fetchGetBooksApi} from "../../store/booksSliceApi";
 
 
 const BooksArea: FC = () => {
     const dispatch = useAppDispatch()
-    const books = useAppSelector((state) => state.books.books)
-    const status = useAppSelector((state) => state.books.status)
-    const pages = useAppSelector((state) => state.books.pages)
+    // const books = useAppSelector((state) => state.books.books)
+    const books = useAppSelector((state) => state.booksApi.books)
+    const status = useAppSelector((state) => state.booksApi.status)
+    const pages = useAppSelector((state) => state.booksApi.page)
     const totalItemsBooks = useAppSelector((state) => state.books.totalItems)
-
     const stylesAdaptive = {
         grid: {
             display:"Flex",
             justifyContent:"space-around",
             alignItems:"center",
             maxWidth:'90vw',
+            width:'75vw',
             margin: '0 auto',
             padding:'0',
-            overflowX: 'visible',
-            overflowY: 'scroll',
+
             flexWrap:'wrap',
-            '@media (max-width: 1100px)': {
-                direction:"column",
-                flexDirection:'column'
-            }
+            // '@media (max-width: 1100px)': {
+            //     direction:"column",
+            //     flexDirection:'column'
+            // }
         }
     }
-
     return (
-        <>
-            <Typography sx={{textAlign:'center'}} variant='h6'>Found {totalItemsBooks} results</Typography>
+        <Box sx={{display:'block'}}>
             <Box
                 sx={stylesAdaptive.grid}
             >
                 {status === 'resolved' &&
-                    books.map((elem:BookType)=>{
+                    books.map((elem:IFilm)=>{
                         return <BooksCard  key={elem.id} infoBook={elem}/>
                     })
                 }
-
-
             </Box>
             <Grid
                 container
@@ -56,15 +53,16 @@ const BooksArea: FC = () => {
             >
                 { status === 'resolved' &&
                     <Button variant="contained" disableElevation onClick={()=>{
-                        dispatch(changePagesBooks(pages + 1))
-                        dispatch(fetchGetBooks())
+                        // dispatch(changePagesBooks(pages + 1))
+                        dispatch(changePage(pages))
+                        dispatch(fetchGetBooksApi())
                     }}>
                         load more
                     </Button>
                 }
             </Grid>
 
-        </>
+        </Box>
     );
 };
 

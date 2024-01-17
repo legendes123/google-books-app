@@ -7,7 +7,6 @@ import {useAppSelector} from "./hooks/hooks";
 // fix booksIdReplace
 function App() {
   const books = useAppSelector((state) => state.books.books)
-  console.log(books)
   const router = createBrowserRouter([
     {
       path: '/',
@@ -22,7 +21,7 @@ function App() {
       loader: async ({ params  }) => {
         const booksId = params.booksId
         const booksIdReplace = booksId?.replace(/:/g,'')
-        return books.filter((elem) => elem.id  === booksIdReplace)
+        return books.filter((elem: any) => elem.id  === booksIdReplace)
       }
     }
   ])
