@@ -1,30 +1,20 @@
 import React, {FC, useState} from 'react';
 import {Box, Typography} from "@mui/material";
 import Grid from '@mui/material/Grid';
-import SearchBar from '@mkyy/mui-search-bar';
-import SelectFilters from "../SelectFilters/SelectFilters";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 import {
     changeSortingBy,
     changeCategories,
     fetchGetBooks,
-    changeSearchValueBooks,
-    clearStore, stateDefaultValue
+
 } from "../../store/booksSlice";
-import {useDispatch, useSelector} from "react-redux";
-import Button from '@mui/material/Button';
+
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-import SliderDate from "../SliderDate/SliderDate";
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Checkboxes from "../Checkboxes/Checkboxes";
-import CheckboxForm from "../CheckboxForm/CheckboxForm";
-import {genres,  Other, publishingHouse} from "./const";
+import SliderDate from "./components/SliderDate/SliderDate";
+
+import Checkboxes from "./components/Checkboxes/Checkboxes";
+import CheckboxForm from "./components/CheckboxForm/CheckboxForm";
+import {genres,  Other, publishingHouse} from "./const/const";
 
 
 const Filter:FC = () => {

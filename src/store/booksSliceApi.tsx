@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {RootState} from "../index";
-import {genres} from "../components/Filter/const";
+import {genres} from "../modules/Filter/const/const";
 import {IDefaultFilters, IDefaultState} from "../types/types";
 const date = '2016-12-11'
 const listName = 'mass'

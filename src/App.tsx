@@ -14,15 +14,15 @@ function App() {
       errorElement: <ErrorPage />
     },
     {
-      path: 'DescriptionBooks/:booksId',
+      path: '/DescriptionBooks',
       element: <DescriptionBooks />,
       errorElement: <ErrorPage />,
 
-      loader: async ({ params  }) => {
-        const booksId = params.booksId
-        const booksIdReplace = booksId?.replace(/:/g,'')
-        return books.filter((elem: any) => elem.id  === booksIdReplace)
-      }
+      // loader: async ({ params  }) => {
+        // const booksId = params.booksId
+        // const booksIdReplace = booksId?.replace(/:/g,'')
+        // return books.filter((elem: any) => elem.id  === booksIdReplace)
+      // }
     }
   ])
   return (

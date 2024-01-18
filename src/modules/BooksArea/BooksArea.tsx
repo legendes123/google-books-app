@@ -1,10 +1,8 @@
 import React, {FC} from 'react';
 import {Box, Typography} from "@mui/material";
-import BooksCard from "../BooksCard/BooksCard";
+import BooksCard from "./components/BooksCard/BooksCard";
 import Grid from "@mui/material/Grid";
-import {useDispatch, useSelector} from "react-redux";
 import Button from "@mui/material/Button";
-import { changePagesBooks, fetchGetBooks} from "../../store/booksSlice";
 import {BookType, IFilm} from "../../types/types";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import {changePage, fetchGetBooksApi} from "../../store/booksSliceApi";

@@ -13,9 +13,7 @@ const Search = () => {
 
     function handleSearch(newValue: string){
         dispatch(changeSearchValue(newValue))
-        dispatch(changeSearchValueBooks(newValue))
         search()
-        dispatch(clearStore(stateDefaultValue))
         dispatch(fetchGetBooksApi())
 
     }

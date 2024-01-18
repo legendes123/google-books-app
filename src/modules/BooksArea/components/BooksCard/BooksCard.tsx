@@ -4,8 +4,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import {Box} from "@mui/material";
 import { Link } from 'react-router-dom'
-import noFoundImages from "../../images/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"
-import {BookType, IFilm} from "../../types/types";
+import noFoundImages from "../../../../images/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg"
+import {BookType, IFilm} from "../../../../types/types";
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import Grid from "@mui/material/Grid";
 import StarBorderIcon from '@mui/icons-material/StarBorder';

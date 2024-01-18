@@ -4,8 +4,8 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
-import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-import {addFilter, clearFilter} from "../../store/booksSliceApi";
+import {useAppDispatch, useAppSelector} from "../../../../hooks/hooks";
+import {addFilter, clearFilter} from "../../../../store/booksSliceApi";
 interface CheckboxElem {
     name:string,
     isActive:boolean
