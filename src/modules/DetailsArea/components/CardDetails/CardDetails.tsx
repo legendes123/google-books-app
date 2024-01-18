@@ -10,7 +10,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import {genres, value} from "../../const/const";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SouthEastIcon from '@mui/icons-material/SouthEast';
-const Card = () => {
+const CardDetails = () => {
     return (
         <Grid
             sx={{
@@ -390,4 +390,4 @@ const Card = () => {
     );
 };
 
-export default Card;
+export default CardDetails;

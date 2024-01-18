@@ -6,7 +6,7 @@ import {Box} from "@mui/material";
 import {useLoaderData} from "react-router-dom";
 import {BookType} from "../../types/types";
 import Header from "../../components/Header/Header";
-import CardDetails from "../../modules/CardDetails/CardDetails";
+import DetailsArea from "../../modules/DetailsArea/DetailsArea";
 
 
 
@@ -15,7 +15,7 @@ const DescriptionBooks:FC = () => {
     return (
        <Box>
            <Header/>
-           <CardDetails/>
+           <DetailsArea/>
        </Box>
     );
 };

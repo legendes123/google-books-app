@@ -1,13 +1,13 @@
 import React from 'react';
-import Card from "./components/Card/Card";
 import {Box} from "@mui/material";
+import CardDetails from "./components/CardDetails/CardDetails";
 
-const CardDetails = () => {
+const DetailsArea = () => {
     return (
         <Box sx={{display:'flex',justifyContent:'center'}}>
-            <Card/>
+            <CardDetails/>
         </Box>
     );
 };
 
-export default CardDetails;
+export default DetailsArea;
